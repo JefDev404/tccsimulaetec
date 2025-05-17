@@ -1,0 +1,22 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Bloqueia acesso direto a arquivos sensíveis
+    RewriteRule ^(app|config|core) - [F,L]
+    
+    # Permite apenas arquivos específicos na raiz
+    RewriteCond %{REQUEST_URI} !^(index\.php|public/|robots\.txt|favicon\.ico)
+    
+    # Redireciona tudo para index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
+</IfModule>
+
+# Segurança adicional
+<FilesMatch "\.(php|inc)$">
+    Require all denied
+</FilesMatch>
+<Files "index.php">
+    Require all granted
+</Files>

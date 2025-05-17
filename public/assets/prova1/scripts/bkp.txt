@@ -1,0 +1,275 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const config = window.SIMULAETEC_CONFIG || {}; 
+    const PROVA1_ASSETS = config.PROVA1_ASSETS || '';
+
+    // Elementos da página
+    const nextQuestBtn = document.getElementById('nextQuestBtn');
+    const prevQuestBtn = document.createElement('button');
+    const questImage = document.getElementById('questImage');
+    const radioInputs = document.querySelectorAll('input[name="answer"]');
+    const timerElement = document.getElementById("timer");
+    const gerarBtn = document.getElementById("gerarBtn");
+    const answerForm = document.querySelector('.answer-form');
+    const controlsSection = document.querySelector('.controls-section');
+
+ 
+    prevQuestBtn.id = 'prevQuestBtn';
+    prevQuestBtn.textContent = 'QUESTÃO ANTERIOR';
+    prevQuestBtn.className = 'animate-onload';
+
+    controlsSection.appendChild(prevQuestBtn);
+
+    // Lista de questões
+    const questions = [
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/intro.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest1.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest2.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest3.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest4.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest5.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest6.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest7img.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest7.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest8.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest9.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest10.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest11.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest12a15img.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest12.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest13.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest14.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest15.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest16.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest17.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest18.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest19.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest20.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest21.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest22.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest23.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest24.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest25a26img.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest25.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest26.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest27.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest28a29img.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest28.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest29.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest30.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest31.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest32.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest33.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest34.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest35a36img.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest35.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest36.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest37.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest38.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest39a42img.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest39.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest40.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest41.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest42.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest43.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest44.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest45.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest46a49img.png', requiresAnswer: false },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest46.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest47.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest48.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest49.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/quest50.png', requiresAnswer: true },
+        { image: PROVA1_ASSETS + 'imgs/imgprovas/gabarito.png', requiresAnswer: false }
+    ];
+
+    // Variáveis de estado
+    let currentIndex = 0;
+    let questaoIndex = 1;
+    let respostas = [];
+    let tempoTotal = 4 * 60 * 60;
+    let tempoInicial = tempoTotal;
+    let tempoEsgotado = false;
+    let contador;
+    let provaIniciada = false;
+
+    // Função para carregar questões
+    function loadQuestion(index) {
+        const quest = questions[index];
+        const direction = index > currentIndex ? 'next' : 'prev';
+        
+        // Aplicar animação antes de trocar a imagem
+        const imgContainer = document.querySelector('.prova-img');
+        if (direction === 'next') {
+            imgContainer.classList.add('slide-up');
+        } else if (direction === 'prev') {
+            imgContainer.classList.add('slide-down');
+        }
+        
+        // Esperar a animação terminar antes de trocar a imagem
+        setTimeout(() => {
+            questImage.src = quest.image;
+            imgContainer.classList.remove('slide-up', 'slide-down');
+            
+            // Restaurar resposta selecionada se existir
+            if (respostas[questaoIndex] && quest.requiresAnswer) {
+                document.querySelector(`input[value="${respostas[questaoIndex]}"]`).checked = true;
+            } else {
+                radioInputs.forEach(input => input.checked = false);
+            }
+    
+            // Controle do formulário de respostas
+            if (index === 0) {
+                answerForm.style.display = 'none';
+                nextQuestBtn.textContent = 'Iniciar Prova';
+                nextQuestBtn.style.backgroundColor = '#4CAF50';
+                prevQuestBtn.style.display = 'none';
+            } else {
+                answerForm.style.display = 'block';
+                nextQuestBtn.textContent = 'Próxima Questão';
+                nextQuestBtn.style.backgroundColor = '#3277bd';
+                // Mostra o botão voltar apenas a partir da questão 2 (índice 2)
+                prevQuestBtn.style.display = index > 1 ? 'block' : 'none';
+            }
+    
+            // Controle do botão próximo (apenas para questões que requerem resposta)
+            if (quest.requiresAnswer && provaIniciada) {
+                nextQuestBtn.disabled = !isAnswerSelected();
+            } else {
+                nextQuestBtn.disabled = false;
+            }
+            
+            currentIndex = index; // Atualiza o índice atual após a animação
+        }, 500); // Tempo deve corresponder à duração da transição CSS
+    }
+
+
+
+    // Funções auxiliares
+    function isAnswerSelected() {
+        return [...radioInputs].some(input => input.checked);
+    }
+
+    function navigateToQuestion(direction) {
+        const quest = questions[currentIndex];
+        const selectedOption = [...radioInputs].find(input => input.checked);
+        
+        // Salvar resposta antes de navegar
+        if (quest.requiresAnswer && provaIniciada && selectedOption) {
+            respostas[questaoIndex] = selectedOption.value;
+        }
+        
+        let newIndex = currentIndex;
+        if (direction === 'next' && currentIndex < questions.length - 1) {
+            newIndex = currentIndex + 1;
+            if (questaoIndex < questions.length - 1) questaoIndex++;
+        } else if (direction === 'prev' && currentIndex > 1) {
+            newIndex = currentIndex - 1;
+            if (questaoIndex > 1) questaoIndex--;
+        }
+        
+        loadQuestion(newIndex);
+        
+        if (newIndex === questions.length - 1) {
+            gerarBtn.style.display = "inline-block";
+        } else {
+            gerarBtn.style.display = "none";
+        }
+    }
+
+    // Event listeners
+    radioInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            if (questions[currentIndex].requiresAnswer && provaIniciada) {
+                nextQuestBtn.disabled = !isAnswerSelected();
+            }
+        });
+    });
+
+    nextQuestBtn.addEventListener('click', () => {
+        if (!provaIniciada && currentIndex === 0) {
+            provaIniciada = true;
+            iniciarTimer();
+        }
+        navigateToQuestion('next');
+    });
+
+    prevQuestBtn.addEventListener('click', () => {
+        if (currentIndex > 1) { // Só permite voltar se não for a intro ou quest1
+            navigateToQuestion('prev');
+        }
+    });
+
+    // Timer (mantido igual)
+    function iniciarTimer() {
+        if (!contador) {
+            contador = setInterval(atualizarTimer, 1000);
+        }
+    }
+
+    function atualizarTimer() {
+        let horas = Math.floor(tempoTotal / 3600);
+        let minutos = Math.floor((tempoTotal % 3600) / 60);
+        let segundos = tempoTotal % 60;
+
+        timerElement.textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+        let porcentagem = tempoTotal / tempoInicial;
+        if (porcentagem <= 0.1) {
+            timerElement.style.color = "red";
+        } else if (porcentagem <= 0.5) {
+            timerElement.style.color = "yellow";
+        } else {
+            timerElement.style.color = "green  rgb(6, 243, 6)";
+        }
+
+        if (tempoTotal <= 0 && !tempoEsgotado) {
+            tempoEsgotado = true;
+            clearInterval(contador);
+            timerElement.textContent = "Tempo esgotado";
+            timerElement.style.color = "red";
+        } else {
+            tempoTotal--;
+        }
+    }
+
+    // Função para gerar arquivo (mantido igual)
+    window.gerarArquivo = function() {
+        const texto = respostas
+            .map((resp, i) => (i > 0 ? `${i}${resp}` : null))
+            .filter(Boolean)
+            .join(", ");
+
+        const blob = new Blob([texto], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "respostas.txt";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        let outputDiv = document.getElementById("respostasPrint");
+        if (!outputDiv) {
+            outputDiv = document.createElement("div");
+            outputDiv.id = "respostasPrint";
+            outputDiv.style.marginTop = "20px";
+            outputDiv.style.fontSize = "18px";
+            outputDiv.style.fontFamily = "monospace";
+            outputDiv.style.display = "none";
+            document.body.appendChild(outputDiv);
+        }
+
+        outputDiv.style.display = "block";
+        outputDiv.innerHTML = `<strong>suas respostas:</strong><br>${texto}`;
+    };
+
+    // Inicialização
+    loadQuestion(0);
+    questImage.style.display = 'block';
+
+    // Efeitos visuais
+    document.body.classList.add('loaded');
+    const elements = document.querySelectorAll('.animate-onload');
+    elements.forEach(el => {
+        el.style.opacity = '0';
+    });
+});

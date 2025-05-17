@@ -1,0 +1,27 @@
+├── app/
+│   ├── controllers/          # Adicionar para lidar com a lógica
+│   │   └── AuthController.php
+│   ├── models/               # Adicionar para interação com banco de dados
+│   │   └── UserModel.php
+│   └── views/
+│       ├── 404.php
+│       ├── guia.php
+│       ├── home.php
+│       ├── login.php
+│       ├── prova.php
+│       └── cadastro.php      # Nova view de cadastro
+├── config/
+│   └── database.php         # Configurações de banco de dados
+├── public/
+│   ├── assets/
+│   │   ├── auth/            # Pasta para assets de autenticação
+│   │   │   ├── css/
+│   │   │   │   └── auth.css # Estilos para login/cadastro
+│   │   │   └── js/
+│   │   │       └── auth.js  # Scripts para validação front-end
+│   │   ├── home/
+│   │   └── prova/
+├── index.php
+└── router.php               # Roteamento (se aplicável)
+
+
