@@ -1,17 +1,15 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #201f1f;
+    background-color: #560F20;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('../imgs/fundosala.png');
+    background-image: url('../imgs/fundo2.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center; 
-
-   /* zoom: 1.25;  funciona Chrome e Edge (PARA WINDOWNS) */
-     
+    color: #ECD8E0;
 }
 
 .header {
@@ -19,41 +17,46 @@ body {
     height: 100%;
 }
 
-
 .header-top {
-    position: relative;
-    top: 0;
-    width: 100%;
-    height: 65px;
-    background-color: rgb(29, 28, 28);
-    z-index: 15;
+ width: 100%;
+    min-height: 90px;
+    background-color: #791127;
+    z-index: 100;
     display: flex;
-    /* Adicione isso */
     justify-content: space-between;
-    /* Isso vai separar logo e navegação */
     align-items: center;
-   
 
 }
-.texto-simulado{
+
+.texto-simulado {
     font-size: 30px;
-        color: #f7f7f7;
-       text-decoration: none;
-       font-weight: 600;
-       padding: 5px 5px;
-       transition: all 0.3s ease;
-       text-transform: uppercase;
-   }
+    color: #ECD8E0; 
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+     margin-right: 130px;
+}
 
 
-
-.logo{
-    top: 10px;
-    left: 10px;
+.logo {
     position: absolute;
+    left: 120px;
     width: 300px;
     max-height: 50px;
     border-radius: 10px;
+    top: 20px;
+}
+
+
+.logo2 {
+    position: absolute;
+    left: 10px;
+    height: 80px;
+    width: 110px;
+    top:5px;
+
 }
 
 .categories-list {
@@ -62,20 +65,19 @@ body {
     padding: 0;
     margin: 0;
     gap: 30px;
-   
 }
 
 .category-item {
     position: relative;
 }
-.texto-simulado{
+
+.texto-simulado {
     font-size: 1.5rem;
     margin-left: 70px;
-  
 }
 
 .category-link {
-    color: #f7f7f7;
+    color: #ECD8E0; 
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
@@ -89,8 +91,7 @@ body {
     position: absolute;
     width: 0;
     height: 2px;
-    background: #909290ab;
-
+    background: #C75C71; 
     bottom: -5px;
     left: 0;
     transition: width 0.3s ease;
@@ -100,29 +101,26 @@ body {
     width: 100%;
 }
 
-
-
 .prova-list {
     margin: 200px;
-    background-color: #3a3a3a;
+    background-color: #791127; 
     border-radius: 8px;
-    padding: 0;  /* Removemos o padding geral */
+    padding: 0;
     max-width: 800px;
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    overflow: hidden;  /* Para a borda arredondada funcionar */
+    overflow: hidden;
 }
 
-
 .texto-modal {
-    color: #f7f7f7;
+    color: #ECD8E0; 
     font-size: 1.8rem;
     text-align: center;
     width: 100%;
     margin: 0;
-    padding: 20px 0;  /* Espaçamento interno */
-    background-color: #2a2a2a;  /* Cor de destaque */
-    border-bottom: 2px solid #4a4a4a;  /* Linha divisória */
+    padding: 20px 0;
+    background-color: #560F20; 
+    border-bottom: 2px solid #C75C71; 
     text-transform: uppercase;
 }
 
@@ -131,15 +129,14 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    padding: 20px;  /* Espaçamento interno apenas dos links */
+    padding: 20px;
 }
 
-/* Estilo para os links das provas */
 .prova-list a.category-link {
     display: inline-block;
     padding: 12px 20px;
-    background-color: #4a4a4a;
-    color: #f7f7f7;
+    background-color: #ce3655; 
+    color: #ECD8E0; 
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
@@ -149,12 +146,11 @@ body {
     text-align: center;
     min-width: 100px;
     margin: 5px;
-    border: 1px solid #5a5a5a;
+    border: 1px solid #d18293;
 }
 
-/* Efeitos hover e active */
 .prova-list a.category-link:hover {
-    background-color: #5a5a5a;
+    background-color: #a87580;
     transform: translateY(-2px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -163,15 +159,11 @@ body {
     transform: translateY(0);
 }
 
-
-
-
 /* ________________________________________________RESPONSIVO_______________________________________________________ */
 
 @media (max-width: 768px) {
-
     body {
-        background-color: #333;
+        background-color: #560F20; 
         zoom: 1;
     }
 
@@ -184,20 +176,16 @@ body {
         min-height: 100px;
     }
 
-
     .logo {
         position: relative;
         width: 250px;
         margin: 0 auto;
         display: block;
         bottom: 10px;
-
-        
     }
-
     
     .categories-list {
-          position: absolute;
+        position: absolute;
         margin-right: 22px;
         display: flex;
         flex-wrap: wrap;
@@ -205,8 +193,6 @@ body {
         gap: 1px;
         margin-left: 135px;
         margin-top: -20px;
-     
-
     }
 
     .texto-simulado {
@@ -215,37 +201,30 @@ body {
         text-align: center;
         bottom: 5px;
         left: 30px;
-
     }
 
     .category-link {
         font-size: 0.7rem;
-
     }
 
-
-    /* Conteúdo principal */
     .container {
-         position: relative;
+        position: relative;
         width: 95%;
         padding: 0 10px;
     }
 
-
-/* Responsividade - ajusta para telas menores */
-@media (max-width: 768px) {
-    .prova-list {
-        padding: 15px;
-        gap: 10px;
+    @media (max-width: 768px) {
+        .prova-list {
+            padding: 15px;
+            gap: 10px;
+        }
+        
+        .prova-list a.category-link {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
     }
-    
-    .prova-list a.category-link {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-        min-width: 80px;
-    }
-}
-
 
     .footer {
         height: auto;
@@ -255,8 +234,6 @@ body {
 }
 
 @media (max-width: 480px) {
-
-    /* Ajustes para telas muito pequenas */
     .logo {
         width: 200px;
     }
@@ -265,8 +242,7 @@ body {
         font-size: 1rem;
     }
 
-    .intro,
-    .sobre {
+    .intro, .sobre {
         margin-top: 15px;
     }
 

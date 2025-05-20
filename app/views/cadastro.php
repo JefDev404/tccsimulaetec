@@ -32,6 +32,9 @@
     <div class="header-top">
 
         <div class="header-content">
+                 <img src="<?= HOME_ASSETS ?>imgs/logo2.png" class="logo2">
+            </div>
+            <div class="header-content">
             <a href="<?= BASE_URL ?>?page=home" class="category-link">
                 <img src="<?= CADASTRO_ASSETS ?>imgs/logo.png" alt="Logo Simulado" class="logo">
             </a>

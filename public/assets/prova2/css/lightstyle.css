@@ -1,0 +1,341 @@
+/* ESTILOS GERAIS */
+body {
+    font-family: 'orbital';
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Fundo claro */
+    background-image: url('../imgs/fundoinverso.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'orbital', sans-serif;
+    color: #333333; /* Texto escuro */
+    min-height: 100vh;
+}
+
+/* CABEÇALHO FIXO */
+.header {
+    width: 100%;
+    height: 100%;
+}
+
+
+.header-top {
+ width: 100%;
+    min-height: 90px;
+     background-color: #f5f5f5; 
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.logo {
+    position: absolute;
+    left: 120px;
+    width: 300px;
+    max-height: 50px;
+    border-radius: 10px;
+    top: 20px;
+    filter: brightness(0); /* Transforma branco em preto */
+}
+
+
+.logo2 {
+    position: absolute;
+    left: 10px;
+    height: 80px;
+    width: 110px;
+    top:5px;
+    filter: brightness(0); /* Transforma branco em preto */
+
+}
+.texto-simulado {
+    font-size: 1.5rem;
+    margin-left: 180px;
+    color: #333333; /* Texto escuro */
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.categories-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 30px;
+}
+
+.category-item {
+    position: relative;
+}
+
+.category-link {
+    color: #444444; /* Texto mais escuro */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 5px 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.category-link:hover {
+    color: #666666; /* Cinza mais escuro no hover */
+}
+
+.category-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #cccccc; /* Linha mais clara */
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.category-item:hover::after {
+    width: 100%;
+}
+
+#timer {
+    position: fixed;
+    font-weight: bold;
+    font-size: x-large;
+    color:  #10df1b;
+    transition: color 0.3s ease;
+    z-index: 100;
+}
+
+.timer-box {
+    width: 130px;
+    height: 60px;
+    position: fixed;
+    top: 90px;
+    right: 15px;
+    font-weight: bold;
+    font-size: x-large;
+    color: #333333; /* Texto escuro */
+    background: #ffffff; /* Fundo branco */
+    padding: 10px;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    z-index: 90;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+    border: 1px solid #e0e0e0; /* Borda sutil */
+}
+
+.start-btn {
+    position: absolute;
+    display: block;
+    top: 375px;
+    left: 390px;
+    width: 200px;
+    margin: 5px auto;
+    padding: 12px;
+    background-color: #4CAF50; /* Mantido verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'orbital', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 100;
+}
+
+/* CONTEÚDO PRINCIPAL (ROLÁVEL) */
+.scrollable-content {
+    margin-top: 60px;
+    padding: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+/* SEÇÕES DE POST */
+.post-section {
+    height: auto;
+    width: auto;
+    margin-bottom: 40px;
+}
+
+/* ESTILO PARA CADA QUESTÃO */
+.post {
+    height: auto;
+    width: auto;
+    position: relative;
+    background-color: rgb(255, 255, 255); /* Fundo branco */
+    padding: 5px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    min-height: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+/* FORMULÁRIO FIXO */
+.answer-section {
+    position: absolute;
+    left: 10px;
+    bottom: 35px;
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+    padding: 2px;
+    border-radius: 10px;
+    z-index: 100;
+    color: #333333; /* Texto escuro */
+    line-height: 1.3;
+    font-family: 'orbital', sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+    border: 1px solid #e0e0e0; /* Borda sutil */
+}
+
+/* MELHORIAS PARA AS OPÇÕES */
+.alternative-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answer-option {
+    display: flex;
+    align-items: center;
+}
+
+.answer-option input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.1);
+}
+
+.answer-option label {
+    cursor: pointer;
+    transition: color 0.2s;
+    color: #333333; /* Texto escuro */
+}
+
+.answer-option label:hover {
+    color: #3277bd; /* Azul mantido */
+}
+
+/* BOTÃO DE ENVIO */
+.submit-btn {
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    padding: 12px 20px;
+    background-color: #4CAF50; /* Mantido verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'orbital', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #45a049; /* Mantido verde mais escuro */
+}
+
+/* Estilo da imagem */
+.quest-image {
+    max-width: 100%;
+    max-height: 80vh;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* CONTROLES FIXOS */
+.fixed-controls {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+}
+
+#nextQuestBtn,
+#prevQuestBtn {
+    width: 150px;
+    padding: 10px 20px;
+    background-color: #3277bd; /* Azul mantido */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'orbital';
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 15px;
+}
+
+#prevQuestBtn {
+    background-color: #6c757d; /* Cinza mantido */
+}
+
+#nextQuestBtn:hover {
+    background-color: #0056b3; /* Azul mais escuro mantido */
+}
+
+#prevQuestBtn:hover {
+    background-color: #5a6268; /* Cinza mais escuro mantido */
+}
+
+.site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(245, 245, 245, 0.9); /* Fundo claro */
+    color: #333333; /* Texto escuro */
+    text-align: center;
+    border-top: 1px solid #e0e0e0; /* Borda sutil */
+}
+
+/* ANIMAÇÕES (mantidas) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-onload {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    body {
+        background-color: #ffffff; /* Fundo branco */
+    }
+
+    .header-top {
+        background-color: #f5f5f5; /* Fundo claro */
+    }
+
+    .scrollable-content {
+        background-color: rgba(255, 255, 255, 0.95); /* Mais opaco em mobile */
+    }
+
+    /* Outros ajustes de responsividade mantidos */
+}

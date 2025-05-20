@@ -14,26 +14,50 @@ body {
 
 }
 
-.logo {
-    position: absolute;
-    top: 10px; /* Cola no topo */
-    left: 20px; /* substitui o margin-left */
-    width: 300px;
-    max-height: 50px;
-    border-radius: 10px;
-}
 
 
 .header-top {
-    width: 100%;
-    min-height:auto;
-    background-color: rgb(29, 28, 28);
+ width: 100%;
+    min-height: 90px;
+     background-color: rgb(29, 28, 28);
     z-index: 100;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
+
+
+.logo {
+    position: absolute;
+    left: 120px;
+    width: 300px;
+    max-height: 50px;
+    border-radius: 10px;
+    top: 20px;
+}
+
+
+.logo2 {
+    position: absolute;
+    left: 10px;
+    height: 80px;
+    width: 110px;
+    top:5px;
+
+}
+
+.header-top {
+ width: 100%;
+    min-height: 90px;
+ background-color: rgb(29, 28, 28);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
 
 .categories-list {
     display: flex;
