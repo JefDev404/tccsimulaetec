@@ -1,0 +1,366 @@
+body {
+  margin: 0;
+  padding: 0;
+font-family: 'Poppins', sans-serif;
+background-image: rep;
+}
+
+.textos{
+    margin-bottom: 20%;
+}
+
+h1 {
+  font-weight: normal; /* deixa o título normal */
+  font-weight: 450;
+}
+
+h1 .etec {
+  font-weight: 900;   /* só o "ETEC" em bold */
+}
+
+.user {
+    width: 100px;
+    max-height: 90px;
+}
+
+.icon
+
+.icon-perfil {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.icon-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.header-top {
+    width: 100%;
+    min-height: 90px;
+    background-color: #fafafa;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    /* separa logo à esquerda e resto à direita */
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* espaçamento entre Login e o ícone */
+}
+
+
+.categories-container {
+    display: flex;
+    align-items: center;
+}
+
+.category-login {
+    display: flex;
+    align-items: left;
+
+}
+
+
+.header-content {
+    display: flex;
+    align-items: left;
+    gap: 15px;
+    justify-self: start;
+}
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -400px;
+}
+
+.categories-list {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    margin-right: 140px;
+    padding: 0;
+    flex-wrap: nowrap;
+
+}
+
+.category-link1 {
+    font-size: 24px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 3px 5px;
+    white-space: nowrap;
+}
+
+.category-link p {
+    margin: 0;
+}
+
+.TxtSemestres{
+    margin-left: 55px;
+}
+
+.mode-btn {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    width: 100px;
+    height: 30px;
+    color: #171717;
+    background-color: #f9f9f9d2;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 100;
+}
+
+
+
+.main-content {
+    min-height: calc(100vh - 100px);
+    /* altura total menos o header */
+    display: flex;
+    justify-content: center;
+    /* centraliza na horizontal */
+    align-items: center;
+    /* centraliza na vertical */
+    padding: 10px;
+   
+}
+
+.prova-list {
+    position: relative;
+    /* remove o absolute que quebrava o layout */
+    max-width: 650px;
+    width: 100%;
+    text-align: center;
+    margin-top: -100px;
+}
+
+.texto-modal {
+    color: #030213;
+    font-size: 20.672px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 135.45% */
+
+}
+
+.links-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+    padding: 10px;
+}
+
+.prova-list a.category-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* Alinha à esquerda */
+    justify-content: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 12px;
+    text-align: left;
+    width: 280px;
+    height: 100px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    border: 2px solid transparent;
+    gap: 5px; /* espaço entre linhas */
+}
+
+.ano-semestre {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* espaço entre ícone e ano */
+}
+
+.prova-list a.category-link:hover {
+    transform: scale(1.05);
+}
+
+.prova-list a.category-link:active {
+    transform: translateY(0);
+}
+
+/* cores específicas */
+.links-container a:nth-child(1) {
+    background-color: #FFFBD4;
+}
+
+.links-container a:nth-child(2) {
+    background-color: #DEFFD4;
+}
+
+.links-container a:nth-child(3) {
+    background-color: #D4ECFF;
+}
+
+.links-container a:nth-child(4) {
+    background-color: #DCD4FF;
+}
+
+
+
+
+
+.footer {
+    background: #0d1117;
+    color: #ccc;
+
+    margin-top: 60px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+}
+
+
+.footer-col ul li a:hover {
+    color: #6c63ff;
+}
+
+.highlight {
+    color: #6c63ff;
+}
+
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+
+/* ________________________________________________RESPONSIVO_______________________________________________________ */
+
+/* @media (max-width: 768px) {
+    body {
+        background-color: #240f56;
+        zoom: 1;
+    }
+
+    .header-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 0;
+        position: relative;
+        min-height: 100px;
+    }
+
+    .logo {
+        position: relative;
+        width: 250px;
+        margin: 0 auto;
+        display: block;
+        bottom: 10px;
+    }
+
+    .categories-list {
+        position: absolute;
+        margin-right: px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1px;
+        margin-left: px;
+        margin-top: -20px;
+    }
+
+    .texto-simulado {
+        margin-left: 0px;
+        position: absolute;
+        text-align: center;
+        bottom: 5px;
+        left: 30px;
+    }
+
+    .category-link {
+        font-size: 0.7rem;
+        margin-left: 50%;
+    }
+
+    .container {
+        position: relative;
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    @media (max-width: 768px) {
+        .prova-list {
+            padding: 15px;
+            gap: 10px;
+        }
+
+        .prova-list a.category-link {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
+    }
+
+    .footer {
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 200px;
+    }
+
+    .texto-simulado {
+        font-size: 1rem;
+    }
+
+    .intro,
+    .sobre {
+        margin-top: 15px;
+    }
+
+    .floating-menu a {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+    }
+} */

@@ -5,14 +5,25 @@ body {
     justify-content: center;
     vertical-align: baseline;
 
-    /*  zoom: 1.25;
-   funciona Chrome e Edge (PARA WINDOWNS) */
+    /*  zoom: 1.25; funciona Chrome e Edge (PARA WINDOWNS) */
 
 }
 
 html {
     scroll-behavior: smooth;
 }
+
+.header-top {
+    width: 100%;
+    min-height: 90px;
+    background-color: rgb(29, 28, 28);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
 
 
 .logo {
@@ -29,21 +40,52 @@ html {
     left: 10px;
     height: 80px;
     width: 110px;
-  
+}
+
+.category-link {
+    display: block; 
+    text-decoration: none; 
+    color: inherit; 
+}
+.category-link p {
+    margin: 0;
 }
 
 
 
-.header-top {
-    width: 100%;
-    min-height: 90px;
-    background-color: rgb(29, 28, 28);
-    z-index: 100;
+
+.mode-btn {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    width: 100px; 
+    height: 30px;
+    color: #FFFFFF; 
+    background-color: #3a3738;
+    border: none; 
+    border-radius: 5px; 
+    font-weight: 600; 
+    font-size: 12px; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
+    justify-content: center;
+    gap: 8px; 
+    z-index: 100;
 }
+
+
+.mode-btn:hover {
+    color: #1b1b1b; 
+    background-color: #ebdee0d2; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+}
+
+
+
+
 
 
 .login-box {
@@ -355,6 +397,34 @@ html {
         display: block;
     }
 
+
+    .logo2 {
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        height: 40px;
+        width: 55px;
+    }
+      .mode-btn {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    width: 100px;
+    height: 20px;
+    color: #FFFFFF;
+     background-color: #7a7073;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(219, 22, 22, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 100;
+}
 
     .login-box {
         position: fixed;

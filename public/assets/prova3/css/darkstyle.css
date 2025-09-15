@@ -242,12 +242,14 @@ body {
 
 /* BOTÃO DE ENVIO */
 .submit-btn {
+    position: absolute;
+    bottom: 5px;
+    left: 350px;
     display: block;
     width: 200px;
-    margin: 30px auto;
     padding: 12px 20px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #44c025;
+    color: #faf8f8;
     border: none;
     border-radius: 5px;
     font-family: 'orbital', sans-serif;
@@ -256,8 +258,9 @@ body {
     transition: background-color 0.3s;
 }
 
+
 .submit-btn:hover {
-    background-color: #45a049;
+    color: #000000;
 }
 
 /* Estilo da imagem */

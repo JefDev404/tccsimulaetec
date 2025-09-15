@@ -1,51 +1,58 @@
 <?php
-require_once __DIR__ . '/../models/UserModel.php';
+require_once __DIR__ . '/../model/Usuario.php';
 
 class AuthController {
-    private $userModel;
-    
-    public function __construct() {
-        $this->userModel = new UserModel();
-    }
-    
-    public function showRegisterForm() {
-        require_once __DIR__ . '/../views/cadastro.php';
-    }
-    
-    public function register() {
+
+    public function login() {
+        // Garante que a sessão foi iniciada
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nome = trim($_POST['nome']);
-            $email = trim($_POST['email']);
-            $senha = $_POST['senha'];
-            $confirmar_senha = $_POST['confirmar_senha'];
+            $email = $_POST['email'] ?? '';
+            $senha = $_POST['senha'] ?? '';
+
+            $userId = Usuario::autenticar($email, $senha);
             
-            // Validações
-            if ($senha !== $confirmar_senha) {
-                return $this->showRegisterFormWithError("As senhas não coincidem");
-            }
-            
-            if (strlen($senha) < 6) {
-                return $this->showRegisterFormWithError("A senha deve ter pelo menos 6 caracteres");
-            }
-            
-            if ($this->userModel->emailExists($email)) {
-                return $this->showRegisterFormWithError("Este e-mail já está cadastrado");
-            }
-            
-            // Cadastrar usuário
-            $success = $this->userModel->createUser($nome, $email, $senha);
-            
-            if ($success) {
-                header("Location: /login?registered=1");
+            if ($userId) {
+                // Garante sessão segura
+                session_regenerate_id(true); // Evita fixação de sessão
+
+                $_SESSION['user_id'] = $userId;
+
+                header("Location: " . BASE_URL . "?page=perfil");
                 exit();
             } else {
-                $this->showRegisterFormWithError("Erro ao cadastrar. Tente novamente.");
+                return "E-mail ou senha inválidos.";
             }
         }
+        return null;
     }
-    
-    private function showRegisterFormWithError($error) {
-        $error = $error;
-        require_once __DIR__ . '/../views/cadastro.php';
+
+    public function logout() {
+        // Inicia a sessão caso ainda não esteja
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Limpa todas as variáveis da sessão
+        $_SESSION = [];
+
+        // Remove o cookie de sessão
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        // Destroi a sessão
+        session_destroy();
+
+        // Redireciona para a página inicial
+        header("Location: " . BASE_URL . "?page=home");
+        exit();
     }
 }

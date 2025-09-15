@@ -8,18 +8,18 @@
 
     <style>
         @font-face {
-            font-family: 'orbital';
-            src: url('../fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+            font-family: 'Poppins';
+            src: url('../fonts/Poppins.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
 
         body {
-            font-family: 'orbital', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         h3 {
-            font-family: 'orbital';
+            font-family: 'Poppins';
             font-style: italic;
         }
     </style>

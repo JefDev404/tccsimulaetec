@@ -1,0 +1,169 @@
+Documentação de Melhorias de Segurança e Qualidade de Código
+Projeto SimulaETEC
+1. Introdução
+Este documento descreve as melhorias implementadas no sistema SimulaETEC para aumentar a segurança, prevenir vulnerabilidades comuns e melhorar a qualidade do código seguindo princípios de desenvolvimento seguro e código limpo.
+
+2. Problemas Identificados
+Vulnerabilidade a SQL Injection
+
+Senhas armazenadas em texto plano
+
+Falta de validação robusta de entrada
+
+Tratamento inadequado de erros
+
+Credenciais hardcoded no código
+
+3. Melhorias Implementadas
+3.1. Prevenção contra SQL Injection
+Problema: Consultas SQL concatenadas diretamente com entrada do usuário.
+
+Solução: Implementação de Prepared Statements
+
+php
+// ANTES (VULNERÁVEL)
+$sql = "SELECT * FROM usuarios WHERE email = '$email'";
+
+// DEPOIS (PROTEGIDO)
+$stmt = $db->conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+3.2. Hash de Senhas
+Problema: Senhas armazenadas em texto plano.
+
+Solução: Uso de password_hash() e password_verify()
+
+php
+// No cadastro
+$senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+// Na autenticação
+if (password_verify($senha, $senhaHash)) {
+    // Login válido
+}
+3.3. Validação de Entrada Reforçada
+Problema: Validação básica de email.
+
+Solução: Validação completa de email com verificação de domínio
+
+php
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "Formato de email inválido";
+}
+
+// Verifica se o domínio existe
+$domain = explode('@', $email)[1];
+if (!checkdnsrr($domain, 'MX')) {
+    $errors[] = "Domínio de email inválido";
+}
+3.4. Proteção contra XSS
+Problema: Dados do usuário exibidos sem escape.
+
+Solução: Uso de htmlspecialchars() em todas as saídas
+
+php
+<input type="text" value="<?= htmlspecialchars($nome) ?>">
+3.5. Gestão Segura de Credenciais
+Problema: Credenciais de banco no código fonte.
+
+Solução: Arquivo de configuração separado
+
+php
+// config.php (fora do diretório público)
+define('DB_HOST', 'localhost');
+define('DB_USER', 'usuario_seguro');
+define('DB_PASS', 'senha_complexa');
+define('DB_NAME', 'simulaetec_db');
+3.6. Tratamento Adequado de Erros
+Problema: Exibição de detalhes de erro para usuários.
+
+Solução: Log de erros e mensagens genéricas
+
+php
+try {
+    // Operação de banco
+} catch (Exception $e) {
+    error_log("Erro de BD: " . $e->getMessage());
+    die("Erro interno. Tente novamente.");
+}
+4. Guia de Implementação Passo a Passo
+4.1. Preparação do Ambiente
+Fazer backup completo do projeto atual
+
+Criar um branch no controle de versão para as alterações
+
+Verificar se todas as dependências estão atualizadas
+
+4.2. Modificação da Classe Database
+Atualizar a classe Database para usar prepared statements
+
+Adicionar método de query parametrizada
+
+Implementar tratamento de exceções
+
+4.3. Atualização do Sistema de Autenticação
+Modificar a tabela de usuários para armazenar hashes de senha
+
+Atualizar o processo de cadastro para usar password_hash()
+
+Atualizar o processo de login para usar password_verify()
+
+4.4. Implementação de Validação
+Adicionar validação robusta em todos os formulários
+
+Implementar sanitização de entrada
+
+Adicionar escape de saída em todas as exibições
+
+4.5. Configuração de Segurança
+Mover credenciais para arquivo de configuração
+
+Configurar permissões de arquivo adequadas
+
+Implementar logging de segurança
+
+5. Testes de Validação
+5.1. Testes de SQL Injection
+Tentar inserir ' OR '1'='1 nos campos de login
+
+Verificar se o sistema rejeita a entrada maliciosa
+
+5.2. Testes de XSS
+Tentar inserir <script>alert('XSS')</script> nos campos
+
+Verificar se o script não é executado
+
+5.3. Testes de Validação
+Testar entradas inválidas em todos os campos
+
+Verificar se as mensagens de erro são apropriadas
+
+6. Cronograma de Implementação
+Fase 1 (1 dia): Modificação da classe Database e prepared statements
+
+Fase 2 (1 dia): Implementação de hash de senhas
+
+Fase 3 (1 dia): Melhoria da validação e proteção XSS
+
+Fase 4 (0.5 dia): Movimento de credenciais para arquivo de configuração
+
+Fase 5 (0.5 dia): Testes completos do sistema
+
+7. Rollback Plan
+Em caso de problemas:
+
+Restaurar backup do banco de dados
+
+Reverter para o branch anterior no controle de versão
+
+
+✅ SQL Injection: Usar prepared statements
+
+✅ Hash de senhas: Usar password_hash() e password_verify()
+
+✅ Validação: Filtrar entradas e verificar domínio de email
+
+✅ XSS: Usar htmlspecialchars() nas saídas
+
+✅ Configuração: Separar credenciais em arquivo externo

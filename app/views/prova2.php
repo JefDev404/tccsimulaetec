@@ -12,15 +12,13 @@ ini_set('display_errors', 1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulado - SimulaEtec</title>
 
-    <!-- Pré-carrega o CSS principal -->
-    <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+   
     
     <!-- CSS Crítico (estilos essenciais que devem aparecer imediatamente) -->
     <style>
         @font-face {
-            font-family: 'orbital';
-            src: url('<?= HOME_ASSETS ?>fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+            font-family: 'Poppins';
+            src: url('<?= HOME_ASSETS ?>fonts/Poppins.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -29,7 +27,7 @@ ini_set('display_errors', 1);
         body {
             opacity: 0;
             visibility: hidden;
-            font-family: 'orbital', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -89,16 +87,18 @@ ini_set('display_errors', 1);
 <body>
     <!-- CABEÇALHO FIXO -->
     <header>
-           <div class="header-top">
+        <div class="header-top">
             <div class="header-content">
                            <img src="<?= HOME_ASSETS ?>imgs/logo2.png" class="logo2">
             </div>
                 <a href="<?= BASE_URL ?>?page=home" class="category-link">
-                    <img src="<?= PROVA1_ASSETS ?>imgs/header.png" alt="Logo Simulado" class="logo">
+                    <img src="<?= PROVA2_ASSETS ?>imgs/header.png" alt="Logo Simulado" class="logo">
                 </a>
                  <p class="category-link">
                 <span class="texto-simulado">SIMULADO DE PROVA 2º semestre/2024</span>
             </p>
+            
+           
             <div class="categories-container">
                 <nav class="categories-nav">
                     <ul class="categories-list">
@@ -241,7 +241,6 @@ ini_set('display_errors', 1);
     // 2. Configura os outros efeitos após pequeno delay
     setTimeout(() => {
       setupScrollReveal();
-      setupLoginBox();
     }, 50);
 
     // Sincronização entre abas
@@ -270,8 +269,6 @@ ini_set('display_errors', 1);
   });
 </script>
 
-
-
  <script>
    document.addEventListener('DOMContentLoaded', function() {
     const config = window.SIMULAETEC_CONFIG || {};
@@ -290,6 +287,7 @@ ini_set('display_errors', 1);
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest1.png', requiresAnswer: true },
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest2.png', requiresAnswer: true },
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest3a4img.png', requiresAnswer: false },
+        { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest3.png', requiresAnswer: true },
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest4.png', requiresAnswer: true },
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest5.png', requiresAnswer: true },
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest6a9img.png', requiresAnswer: false },
@@ -344,10 +342,8 @@ ini_set('display_errors', 1);
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest48.png', requiresAnswer: true },
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest49.png', requiresAnswer: true },
         { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/quest50.png', requiresAnswer: true },
-        { image: PROVA2_ASSETS + '<?= PROVA2_ASSETS ?>imgs/imgprovas/gabarito.png', requiresAnswer: false }
+      
     ];
-
-
 
      // Classe para criar questões
      class QuestionBuilder {
@@ -533,31 +529,138 @@ ini_set('display_errors', 1);
             this.startButton.addEventListener('click', () => this.startSimulado());
         }
 
-        processarRespostas() {
-            this.respostas = [];
-            this.container.querySelectorAll('[data-questao]').forEach(questao => {
-                const numQuestao = questao.dataset.questao;
-                if (!numQuestao) return;
+processarRespostas() {
+    this.respostas = [];
+    let questaoRealNumero = 1;
+    let algumaNaoRespondida = false;
 
-                const formId = `form-questao-${numQuestao}`;
-                const form = document.getElementById(formId);
-                let resposta = null;
+    this.questions.forEach((question, indexOriginal) => {
+        if (question.requiresAnswer) {
+            const formId = `form-questao-${indexOriginal + 1}`;
+            const form = document.getElementById(formId);
 
-                if (form) {
-                    const checkedInput = form.querySelector('input[type="radio"]:checked');
-                    resposta = checkedInput ? checkedInput.value : null;
-                }
+            let resposta = '';
+            if (form) {
+                const checkedInput = form.querySelector('input[type="radio"]:checked');
+                resposta = checkedInput ? checkedInput.value : resposta;
+            }
+   
+            if (resposta === '') {
+                algumaNaoRespondida = true;
+            }
 
-                this.respostas.push({
-                    questao: numQuestao,
-                    resposta: resposta
-                });
+            this.respostas.push({
+                questao: questaoRealNumero,
+                resposta: resposta
             });
 
-            console.log('Respostas:', this.respostas);
-            //  enviar as respostas para o servidor
+            questaoRealNumero++;
         }
+    });
+    
+
+    if (algumaNaoRespondida) {
+        alert('Por favor, responda todas as questões antes de enviar.');
+        return; // interrompe o envio
     }
+
+ fetch('?page=salvar_desempenho_prova2', {
+
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        tempo_restante: this.timer.totalTime,
+        respostas: this.respostas
+    })
+})
+
+    .then(async response => {
+        const text = await response.text();
+        try {
+            const json = JSON.parse(text);
+            alert(json.message);
+
+            if (json.success) {
+                this.submitButton.disabled = true;
+this.submitButton.textContent = "Respostas Enviadas";
+this.submitButton.style.opacity = "0.6";
+
+                // Montar o relatório
+                let relatorio = "===== RELATÓRIO DO SIMULADO =====\n";
+                relatorio += `Semestre: 2º semestre/2024\n`;
+                relatorio += `Acertos: ${json.correcao.filter(c => c.acertou).length}\n`;
+                relatorio += `Erros: ${json.correcao.filter(c => !c.acertou).length}\n`;
+                relatorio += "---------------------------------\n";
+                relatorio += "Questão | Resposta Usuário | Resposta Correta | Acertou\n";
+
+                json.correcao.forEach(item => {
+                    relatorio += `${item.questao}       | ${item.resposta_usuario}               | ${item.resposta_correta}               | ${item.acertou ? 'Sim' : 'Não'}\n`;
+                });
+                // Mostrar na tela (você pode ter uma <pre id="relatorio-container"></pre>)
+let container = document.getElementById("relatorio-container");
+if (!container) {
+    container = document.createElement("pre");
+    container.id = "relatorio-container";
+
+    // ESTILIZAÇÃO
+    container.style.color = "black";
+    container.style.backgroundColor = "#fff";
+    container.style.padding = "10px";
+    container.style.borderRadius = "5px";
+
+    const submitBtn = document.getElementById('enviar-respostas');
+    submitBtn.insertAdjacentElement('afterend', container);
+}
+
+if (!container) {
+    container = document.createElement("pre");
+    container.id = "relatorio-container";
+    // Inserir logo após o botão "Enviar Respostas"
+    const submitBtn = document.getElementById('enviar-respostas');
+    submitBtn.insertAdjacentElement('afterend', container);
+}
+container.textContent = relatorio;
+
+
+// Criar link para baixar .txt
+const blob = new Blob([relatorio], { type: "text/plain" });
+const link = document.createElement("a");
+link.href = URL.createObjectURL(blob);
+link.download = `relatorio_simulado_${Date.now()}.txt`;
+link.textContent = "📄 Baixar relatório em .txt";
+link.style.display = "block";
+
+// Adiciona link depois do relatório
+container.insertAdjacentElement('afterend', link);
+
+            }
+        } catch (e) {
+            console.error("Erro ao converter JSON:", e);
+            alert("Erro no servidor. Veja o console.");
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao enviar respostas:', error);
+        alert("Erro ao enviar respostas.");
+    });
+
+    // Imprime no console de forma organizada
+    console.log("========= RESPOSTAS DO USUÁRIO =========");
+    console.log(`Total de questões: ${this.respostas.length}`);
+    console.log("-----------------------------------------");
+
+    this.respostas.forEach(item => {
+        console.log(`Questão ${item.questao}: ${item.resposta}`);
+    });
+
+    console.log("=========================================");
+    console.log(this.respostas);
+}
+
+
+
+
+}
 
     // Inicializa o simulado
     const timer = new Timer(timerDisplay);
@@ -570,11 +673,9 @@ ini_set('display_errors', 1);
     );
     simulado.init();
 });
+
 </script>
 
 
-
-
-   
 </body>
 </html>

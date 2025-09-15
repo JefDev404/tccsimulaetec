@@ -1,0 +1,71 @@
+.header-top {
+    width: 100%;
+    min-height: 90px;
+    background-color: #fafafa;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    /* separa logo à esquerda e resto à direita */
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* espaçamento entre Login e o ícone */
+}
+
+
+.categories-container {
+    display: flex;
+    align-items: center;
+}
+
+.category-login {
+    display: flex;
+    align-items: left;
+
+}
+
+
+.header-content {
+    display: flex;
+    align-items: left;
+    gap: 15px;
+    justify-self: start;
+}
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -400px;
+}
+
+.categories-list {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    margin-right: 160px;
+    padding: 0;
+    flex-wrap: nowrap;
+
+}
+
+.category-link1 {
+    font-size: 24px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 3px 5px;
+    white-space: nowrap;
+}
+
+.category-link p {
+    margin: 0;
+}

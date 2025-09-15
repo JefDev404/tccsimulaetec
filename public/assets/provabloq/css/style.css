@@ -1,0 +1,244 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F6EFFF;
+  
+  }
+  
+  .logo {
+      width: 100px;
+      max-height: 90px;
+  }
+  
+  .icon-perfil {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .icon-perfil img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+  }
+  
+  
+  .icon-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+  }
+  
+  .header-top {
+      width: 100%;
+      min-height: 90px;
+      background-color: #fafafa;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      /* separa logo à esquerda e resto à direita */
+      align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
+  }
+  
+  .login-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      /* espaçamento entre Login e o ícone */
+  }
+  
+  
+  .categories-container {
+      display: flex;
+      align-items: center;
+  }
+  
+  .category-login {
+      display: flex;
+      align-items: left;
+  
+  }
+  
+  
+  .header-content {
+      display: flex;
+      align-items: left;
+      gap: 15px;
+      justify-self: start;
+  }
+  
+  .categories-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: -400px;
+  }
+  
+  .categories-list {
+      display: flex;
+      gap: 12px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: nowrap;
+  }
+  
+  
+  
+  
+  .category-link1 {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 3px 5px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+  }
+  
+  .category-link p {
+      margin: 0;
+  }
+  
+.footer {
+    background: #0d1117;
+    color: #ccc;
+
+    margin-top: 60px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+}
+.main-content{
+    margin-top: 50px;
+    background-position: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 50px;
+     border-radius: 30px;
+ 
+}
+
+
+
+.footer-col ul li a:hover {
+    color: #6c63ff;
+}
+
+/* Destaque na logo */
+.highlight {
+    color: #6c63ff;
+}
+
+/* Linha inferior */
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+
+
+/* ________________________________________________RESPONSIVO_______________________________________________________ */
+
+@media (max-width: 768px) {
+    body {
+        background-color: #560F20; 
+        zoom: 1;
+    }
+
+    .header-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 0;
+        position: relative;
+        min-height: 100px;
+    }
+
+    .logo {
+        position: relative;
+        width: 250px;
+        margin: 0 auto;
+        display: block;
+        bottom: 10px;
+    }
+    
+    .categories-list {
+        position: absolute;
+        margin-right: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1px;
+        margin-left: 135px;
+        margin-top: -20px;
+    }
+
+    .texto-simulado {
+        margin-left: 0px;
+        position: absolute;
+        text-align: center;
+        bottom: 5px;
+        left: 30px;
+    }
+
+    .category-link {
+        font-size: 0.7rem;
+    }
+
+    .container {
+        position: relative;
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    @media (max-width: 768px) {
+        .prova-list {
+            padding: 15px;
+            gap: 10px;
+        }
+        
+        .prova-list a.category-link {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
+    }
+
+    .footer {
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 200px;
+    }
+
+    .texto-simulado {
+        font-size: 1rem;
+    }
+
+    .intro, .sobre {
+        margin-top: 15px;
+    }
+
+    .floating-menu a {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+    }
+}

@@ -139,7 +139,7 @@ body {
     width: 200px;
     margin: 5px auto;
     padding: 12px;
-    background-color: #4CAF50; /* Mantido verde */
+     background-color: #44c025;
     color: white;
     border: none;
     border-radius: 5px;
@@ -149,6 +149,9 @@ body {
     transition: background-color 0.3s;
     z-index: 100;
 }
+.start-btn:hover {
+     color: #000000;
+}
 
 /* CONTEÚDO PRINCIPAL (ROLÁVEL) */
 .scrollable-content {
@@ -157,7 +160,7 @@ body {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+   background-color: rgba(245, 240, 241, 0.7);
     backdrop-filter: blur(5px);
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra sutil */
@@ -200,7 +203,7 @@ body {
     border: 1px solid #e0e0e0; /* Borda sutil */
 }
 
-/* MELHORIAS PARA AS OPÇÕES */
+/* MENU OPÇÕES */
 .alternative-answers {
     display: flex;
     flex-direction: column;
@@ -227,14 +230,16 @@ body {
     color: #3277bd; /* Azul mantido */
 }
 
-/* BOTÃO DE ENVIO */
+/* BOTÃO DE ENVIO RESPOSTAS*/
 .submit-btn {
+    position: absolute;
+    bottom: 5px;
+    left: 350px;
     display: block;
     width: 200px;
-    margin: 30px auto;
     padding: 12px 20px;
-    background-color: #4CAF50; /* Mantido verde */
-    color: white;
+    background-color: #44c025;
+    color: #faf8f8;
     border: none;
     border-radius: 5px;
     font-family: 'orbital', sans-serif;
@@ -244,8 +249,10 @@ body {
 }
 
 .submit-btn:hover {
-    background-color: #45a049; /* Mantido verde mais escuro */
+    color: #000000;
 }
+
+
 
 /* Estilo da imagem */
 .quest-image {
